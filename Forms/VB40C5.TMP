@@ -1,0 +1,822 @@
+VERSION 5.00
+Object = "{F0D2F211-CCB0-11D0-A316-00AA00688B10}#1.0#0"; "MSDATLST.OCX"
+Object = "{0ECD9B60-23AA-11D0-B351-00A0C9055D8E}#6.0#0"; "MSHFLXGD.OCX"
+Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCT2.OCX"
+Object = "{FF49E21B-EA30-11D9-85DF-812F544F012A}#68.0#0"; "ctrlNSDataCombo.ocx"
+Begin VB.Form frmInvoiceAE 
+   BorderStyle     =   1  'Fixed Single
+   ClientHeight    =   8100
+   ClientLeft      =   45
+   ClientTop       =   330
+   ClientWidth     =   11190
+   BeginProperty Font 
+      Name            =   "Tahoma"
+      Size            =   8.25
+      Charset         =   0
+      Weight          =   400
+      Underline       =   0   'False
+      Italic          =   0   'False
+      Strikethrough   =   0   'False
+   EndProperty
+   Icon            =   "frmInvoiceAE.frx":0000
+   LinkTopic       =   "Form1"
+   MaxButton       =   0   'False
+   MinButton       =   0   'False
+   ScaleHeight     =   8100
+   ScaleWidth      =   11190
+   StartUpPosition =   2  'CenterScreen
+   Begin VB.CommandButton cmdPH 
+      Caption         =   "Payment History"
+      Enabled         =   0   'False
+      Height          =   315
+      Left            =   2100
+      TabIndex        =   65
+      Top             =   7575
+      Width           =   1590
+   End
+   Begin SMIAS.ctrlLiner ctrlLiner1 
+      Height          =   30
+      Left            =   -75
+      TabIndex        =   6
+      Top             =   7425
+      Width           =   11340
+      _ExtentX        =   20003
+      _ExtentY        =   53
+   End
+   Begin VB.TextBox txtDesc 
+      BackColor       =   &H00E6FFFF&
+      ForeColor       =   &H00000000&
+      Height          =   285
+      Left            =   9450
+      Locked          =   -1  'True
+      TabIndex        =   28
+      Text            =   "0.00"
+      Top             =   6075
+      Width           =   1500
+   End
+   Begin VB.TextBox txtEntry 
+      Height          =   990
+      Index           =   8
+      Left            =   225
+      MaxLength       =   255
+      MultiLine       =   -1  'True
+      ScrollBars      =   2  'Vertical
+      TabIndex        =   27
+      Tag             =   "Remarks"
+      Top             =   6300
+      Width           =   5805
+   End
+   Begin VB.TextBox txtVan 
+      BackColor       =   &H00E6FFFF&
+      ForeColor       =   &H00000000&
+      Height          =   285
+      Left            =   7875
+      Locked          =   -1  'True
+      TabIndex        =   4
+      Top             =   75
+      Width           =   3075
+   End
+   Begin VB.TextBox txtTA 
+      BackColor       =   &H00E6FFFF&
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H00000000&
+      Height          =   285
+      Left            =   9450
+      Locked          =   -1  'True
+      TabIndex        =   29
+      Text            =   "0.00"
+      Top             =   6375
+      Width           =   1500
+   End
+   Begin VB.TextBox txtAP 
+      BackColor       =   &H00E6FFFF&
+      ForeColor       =   &H00000000&
+      Height          =   285
+      Left            =   9450
+      Locked          =   -1  'True
+      TabIndex        =   30
+      Text            =   "0.00"
+      Top             =   6675
+      Width           =   1500
+   End
+   Begin VB.PictureBox picCusInfo 
+      BorderStyle     =   0  'None
+      Height          =   1740
+      Left            =   225
+      ScaleHeight     =   1740
+      ScaleWidth      =   10740
+      TabIndex        =   48
+      Top             =   1050
+      Width           =   10740
+      Begin VB.TextBox txtDP 
+         ForeColor       =   &H00000000&
+         Height          =   285
+         Left            =   7725
+         TabIndex        =   15
+         Text            =   "0.00"
+         Top             =   1350
+         Width           =   1500
+      End
+      Begin VB.CommandButton cmdReset 
+         Height          =   315
+         Left            =   5400
+         Style           =   1  'Graphical
+         TabIndex        =   9
+         ToolTipText     =   "Reset Selection"
+         Top             =   0
+         Width           =   315
+      End
+      Begin VB.ComboBox cbBI 
+         Height          =   315
+         ItemData        =   "frmInvoiceAE.frx":038A
+         Left            =   7725
+         List            =   "frmInvoiceAE.frx":0394
+         Style           =   2  'Dropdown List
+         TabIndex        =   14
+         Top             =   975
+         Width           =   2565
+      End
+      Begin VB.ComboBox cbPT 
+         Height          =   315
+         ItemData        =   "frmInvoiceAE.frx":03B3
+         Left            =   1275
+         List            =   "frmInvoiceAE.frx":03C0
+         Style           =   2  'Dropdown List
+         TabIndex        =   13
+         Top             =   1350
+         Width           =   2565
+      End
+      Begin VB.ComboBox cbCA 
+         Height          =   315
+         ItemData        =   "frmInvoiceAE.frx":03EB
+         Left            =   1275
+         List            =   "frmInvoiceAE.frx":03F5
+         Style           =   2  'Dropdown List
+         TabIndex        =   12
+         Top             =   975
+         Width           =   2565
+      End
+      Begin VB.TextBox txtCusAdd 
+         BackColor       =   &H00E6FFFF&
+         ForeColor       =   &H00000000&
+         Height          =   285
+         Left            =   1275
+         Locked          =   -1  'True
+         TabIndex        =   10
+         Top             =   375
+         Width           =   4425
+      End
+      Begin VB.TextBox txtCusCP 
+         BackColor       =   &H00E6FFFF&
+         ForeColor       =   &H00000000&
+         Height          =   285
+         Left            =   7725
+         Locked          =   -1  'True
+         TabIndex        =   11
+         Top             =   0
+         Width           =   3000
+      End
+      Begin VB.CommandButton cmdNew 
+         Height          =   315
+         Left            =   5025
+         Style           =   1  'Graphical
+         TabIndex        =   8
+         ToolTipText     =   "Create New"
+         Top             =   0
+         Width           =   315
+      End
+      Begin ctrlNSDataCombo.NSDataCombo nsdCustomer 
+         Height          =   315
+         Left            =   1275
+         TabIndex        =   7
+         Top             =   0
+         Width           =   3690
+         _ExtentX        =   6509
+         _ExtentY        =   556
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Tahoma"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+      End
+      Begin VB.Label Label2 
+         Alignment       =   1  'Right Justify
+         Caption         =   "Down Payment"
+         ForeColor       =   &H0000011D&
+         Height          =   240
+         Left            =   5625
+         TabIndex        =   64
+         Top             =   1350
+         Width           =   2040
+      End
+      Begin VB.Label Labels 
+         Alignment       =   1  'Right Justify
+         Caption         =   "Payment Type"
+         Height          =   240
+         Index           =   12
+         Left            =   -975
+         TabIndex        =   54
+         Top             =   1350
+         Width           =   2190
+      End
+      Begin VB.Label Labels 
+         Alignment       =   1  'Right Justify
+         Caption         =   "Billed In   Full Payment"
+         Height          =   240
+         Index           =   7
+         Left            =   5550
+         TabIndex        =   53
+         Top             =   975
+         Width           =   3165
+      End
+      Begin VB.Label Labels 
+         Alignment       =   1  'Right Justify
+         Caption         =   "Charge Account"
+         Height          =   240
+         Index           =   6
+         Left            =   -975
+         TabIndex        =   52
+         Top             =   975
+         Width           =   2190
+      End
+      Begin VB.Label Labels 
+         Alignment       =   1  'Right Justify
+         Caption         =   "Address"
+         Height          =   240
+         Index           =   5
+         Left            =   -975
+         TabIndex        =   51
+         Top             =   375
+         Width           =   2190
+      End
+      Begin VB.Label Labels 
+         Alignment       =   1  'Right Justify
+         Caption         =   "Contact Person"
+         Height          =   240
+         Index           =   3
+         Left            =   5475
+         TabIndex        =   50
+         Top             =   0
+         Width           =   2190
+      End
+      Begin VB.Label Labels 
+         Alignment       =   1  'Right Justify
+         Caption         =   "Sold To"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   240
+         Index           =   2
+         Left            =   300
+         TabIndex        =   49
+         Top             =   0
+         Width           =   915
+      End
+   End
+   Begin VB.CommandButton cmdGenerate 
+      Height          =   315
+      Left            =   3600
+      Style           =   1  'Graphical
+      TabIndex        =   1
+      ToolTipText     =   "Generate"
+      Top             =   150
+      Width           =   315
+   End
+   Begin VB.PictureBox picPurchase 
+      BorderStyle     =   0  'None
+      Height          =   540
+      Left            =   225
+      ScaleHeight     =   540
+      ScaleWidth      =   10740
+      TabIndex        =   39
+      Top             =   2925
+      Width           =   10740
+      Begin VB.CheckBox ckFree 
+         Height          =   315
+         Left            =   9075
+         TabIndex        =   62
+         Top             =   225
+         Width           =   240
+      End
+      Begin VB.ComboBox cbDisc 
+         Height          =   315
+         Left            =   6750
+         TabIndex        =   22
+         Text            =   "0"
+         Top             =   225
+         Width           =   765
+      End
+      Begin VB.TextBox txtAmount 
+         BackColor       =   &H00E6FFFF&
+         ForeColor       =   &H00000000&
+         Height          =   285
+         Left            =   7575
+         Locked          =   -1  'True
+         TabIndex        =   23
+         Text            =   "0.00"
+         Top             =   225
+         Width           =   1410
+      End
+      Begin VB.TextBox txtTQty 
+         BackColor       =   &H00E6FFFF&
+         ForeColor       =   &H00000000&
+         Height          =   285
+         Left            =   5850
+         Locked          =   -1  'True
+         TabIndex        =   21
+         Text            =   "0"
+         Top             =   225
+         Width           =   825
+      End
+      Begin VB.TextBox txtEntry 
+         Height          =   285
+         Index           =   4
+         Left            =   5175
+         TabIndex        =   20
+         Text            =   "0"
+         Top             =   225
+         Width           =   615
+      End
+      Begin VB.TextBox txtEntry 
+         Height          =   285
+         Index           =   3
+         Left            =   4575
+         TabIndex        =   19
+         Text            =   "0"
+         Top             =   225
+         Width           =   540
+      End
+      Begin VB.TextBox txtSP 
+         Height          =   285
+         Left            =   2700
+         TabIndex        =   17
+         Text            =   "0.00"
+         Top             =   225
+         Width           =   1185
+      End
+      Begin VB.TextBox txtEntry 
+         Height          =   285
+         Index           =   2
+         Left            =   3975
+         TabIndex        =   18
+         Text            =   "0"
+         Top             =   225
+         Width           =   540
+      End
+      Begin VB.CommandButton btnSold 
+         Caption         =   "Sold"
+         Enabled         =   0   'False
+         Height          =   315
+         Left            =   9900
+         TabIndex        =   24
+         Top             =   225
+         Width           =   840
+      End
+      Begin ctrlNSDataCombo.NSDataCombo nsdProduct 
+         Height          =   315
+         Left            =   0
+         TabIndex        =   16
+         Top             =   225
+         Width           =   2640
+         _ExtentX        =   4657
+         _ExtentY        =   556
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Tahoma"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+      End
+      Begin VB.Label Labels 
+         BackStyle       =   0  'Transparent
+         Caption         =   "FREE"
+         Height          =   240
+         Index           =   19
+         Left            =   9075
+         TabIndex        =   63
+         Top             =   0
+         Width           =   540
+      End
+      Begin VB.Label Labels 
+         BackStyle       =   0  'Transparent
+         Caption         =   "Disc.%"
+         Height          =   240
+         Index           =   14
+         Left            =   6750
+         TabIndex        =   60
+         Top             =   0
+         Width           =   840
+      End
+      Begin VB.Label Labels 
+         BackStyle       =   0  'Transparent
+         Caption         =   "Amount"
+         Height          =   240
+         Index           =   17
+         Left            =   7575
+         TabIndex        =   46
+         Top             =   0
+         Width           =   540
+      End
+      Begin VB.Label Labels 
+         BackStyle       =   0  'Transparent
+         Caption         =   "Total Qty"
+         Height          =   240
+         Index           =   16
+         Left            =   5850
+         TabIndex        =   45
+         Top             =   0
+         Width           =   840
+      End
+      Begin VB.Label Labels 
+         BackStyle       =   0  'Transparent
+         Caption         =   "Pieces"
+         Height          =   240
+         Index           =   15
+         Left            =   5175
+         TabIndex        =   44
+         Top             =   0
+         Width           =   540
+      End
+      Begin VB.Label Labels 
+         BackStyle       =   0  'Transparent
+         Caption         =   "Boxes"
+         Height          =   240
+         Index           =   11
+         Left            =   4575
+         TabIndex        =   43
+         Top             =   0
+         Width           =   540
+      End
+      Begin VB.Label Labels 
+         BackStyle       =   0  'Transparent
+         Caption         =   "Cases"
+         Height          =   240
+         Index           =   10
+         Left            =   3975
+         TabIndex        =   42
+         Top             =   0
+         Width           =   540
+      End
+      Begin VB.Label Labels 
+         BackStyle       =   0  'Transparent
+         Caption         =   "Sales Price(Each)"
+         Height          =   240
+         Index           =   9
+         Left            =   2700
+         TabIndex        =   41
+         Top             =   0
+         Width           =   1290
+      End
+      Begin VB.Label Labels 
+         BackStyle       =   0  'Transparent
+         Caption         =   "Product Code"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H0000011D&
+         Height          =   240
+         Index           =   8
+         Left            =   0
+         TabIndex        =   40
+         Top             =   0
+         Width           =   1515
+      End
+   End
+   Begin VB.CommandButton btnRemove 
+      Height          =   275
+      Left            =   300
+      Picture         =   "frmInvoiceAE.frx":0407
+      Style           =   1  'Graphical
+      TabIndex        =   26
+      ToolTipText     =   "Remove"
+      Top             =   3975
+      Visible         =   0   'False
+      Width           =   275
+   End
+   Begin VB.CommandButton cmdSave 
+      Caption         =   "Save"
+      Default         =   -1  'True
+      Height          =   315
+      Left            =   8175
+      TabIndex        =   33
+      Top             =   7575
+      Width           =   1335
+   End
+   Begin VB.CommandButton cmdCancel 
+      Caption         =   "Cancel"
+      Height          =   315
+      Left            =   9615
+      TabIndex        =   34
+      Top             =   7575
+      Width           =   1335
+   End
+   Begin VB.CommandButton cmdUsrHistory 
+      Caption         =   "Modification History"
+      Height          =   315
+      Left            =   225
+      TabIndex        =   32
+      Top             =   7575
+      Width           =   1755
+   End
+   Begin VB.TextBox txtBal 
+      BackColor       =   &H00E6FFFF&
+      ForeColor       =   &H00000000&
+      Height          =   285
+      Left            =   9450
+      Locked          =   -1  'True
+      TabIndex        =   31
+      Text            =   "0.00"
+      Top             =   6975
+      Width           =   1500
+   End
+   Begin VB.TextBox txtEntry 
+      ForeColor       =   &H00000000&
+      Height          =   285
+      Index           =   0
+      Left            =   1425
+      TabIndex        =   0
+      TabStop         =   0   'False
+      Top             =   150
+      Width           =   2115
+   End
+   Begin MSHierarchicalFlexGridLib.MSHFlexGrid Grid 
+      Height          =   2190
+      Left            =   225
+      TabIndex        =   25
+      Top             =   3825
+      Width           =   10755
+      _ExtentX        =   18971
+      _ExtentY        =   3863
+      _Version        =   393216
+      Rows            =   0
+      FixedRows       =   0
+      FixedCols       =   0
+      RowHeightMin    =   275
+      ForeColorFixed  =   -2147483640
+      BackColorSel    =   1091552
+      ForeColorSel    =   16777215
+      BackColorBkg    =   -2147483643
+      GridColor       =   -2147483633
+      GridColorFixed  =   -2147483633
+      GridColorUnpopulated=   -2147483633
+      AllowBigSelection=   0   'False
+      FocusRect       =   0
+      SelectionMode   =   1
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      _NumberOfBands  =   1
+      _Band(0).Cols   =   2
+      _Band(0).GridLinesBand=   1
+      _Band(0).TextStyleBand=   0
+      _Band(0).TextStyleHeader=   0
+   End
+   Begin MSComCtl2.DTPicker dtpDate 
+      Height          =   285
+      Left            =   1425
+      TabIndex        =   2
+      Top             =   525
+      Width           =   2505
+      _ExtentX        =   4419
+      _ExtentY        =   503
+      _Version        =   393216
+      CustomFormat    =   "MMM-dd-yyyy"
+      Format          =   24576003
+      CurrentDate     =   38207
+   End
+   Begin VB.TextBox txtDate 
+      Height          =   285
+      Left            =   1425
+      Locked          =   -1  'True
+      TabIndex        =   3
+      Top             =   525
+      Visible         =   0   'False
+      Width           =   2460
+   End
+   Begin MSDataListLib.DataCombo dcSalesman 
+      Height          =   315
+      Left            =   7875
+      TabIndex        =   5
+      Top             =   450
+      Width           =   3105
+      _ExtentX        =   5477
+      _ExtentY        =   556
+      _Version        =   393216
+      Style           =   2
+      BackColor       =   -2147483643
+      ForeColor       =   -2147483640
+      Text            =   ""
+   End
+   Begin VB.TextBox txtNCus 
+      Height          =   210
+      Left            =   6450
+      TabIndex        =   58
+      TabStop         =   0   'False
+      Top             =   5325
+      Visible         =   0   'False
+      Width           =   75
+   End
+   Begin VB.Label Label4 
+      Alignment       =   1  'Right Justify
+      Caption         =   "Discount"
+      ForeColor       =   &H0000011D&
+      Height          =   240
+      Left            =   7350
+      TabIndex        =   61
+      Top             =   6075
+      Width           =   2040
+   End
+   Begin VB.Label Labels 
+      Alignment       =   1  'Right Justify
+      Caption         =   "Remarks"
+      Height          =   240
+      Index           =   4
+      Left            =   -150
+      TabIndex        =   59
+      Top             =   6075
+      Width           =   990
+   End
+   Begin VB.Label Labels 
+      Alignment       =   1  'Right Justify
+      Caption         =   "Van"
+      Height          =   240
+      Index           =   13
+      Left            =   6600
+      TabIndex        =   57
+      Top             =   75
+      Width           =   1215
+   End
+   Begin VB.Label Label3 
+      Alignment       =   1  'Right Justify
+      Caption         =   "Total Amount"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H0000011D&
+      Height          =   240
+      Left            =   7350
+      TabIndex        =   56
+      Top             =   6375
+      Width           =   2040
+   End
+   Begin VB.Label Label1 
+      Alignment       =   1  'Right Justify
+      Caption         =   "Amount Paid"
+      ForeColor       =   &H0000011D&
+      Height          =   240
+      Left            =   7350
+      TabIndex        =   55
+      Top             =   6675
+      Width           =   2040
+   End
+   Begin VB.Label Labels 
+      Alignment       =   1  'Right Justify
+      Caption         =   "Salesman"
+      Height          =   240
+      Index           =   18
+      Left            =   6600
+      TabIndex        =   47
+      Top             =   450
+      Width           =   1215
+   End
+   Begin VB.Line Line2 
+      BorderColor     =   &H80000014&
+      Index           =   1
+      X1              =   225
+      X2              =   10950
+      Y1              =   2850
+      Y2              =   2850
+   End
+   Begin VB.Line Line1 
+      BorderColor     =   &H80000010&
+      BorderWidth     =   2
+      Index           =   1
+      X1              =   225
+      X2              =   10950
+      Y1              =   2850
+      Y2              =   2850
+   End
+   Begin VB.Label Label11 
+      BackStyle       =   0  'Transparent
+      Caption         =   "Sold Products"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H80000014&
+      Height          =   210
+      Left            =   300
+      TabIndex        =   38
+      Top             =   3525
+      Width           =   4365
+   End
+   Begin VB.Label Label9 
+      Alignment       =   1  'Right Justify
+      Caption         =   "Balance"
+      ForeColor       =   &H0000011D&
+      Height          =   240
+      Left            =   7350
+      TabIndex        =   37
+      Top             =   6975
+      Width           =   2040
+   End
+   Begin VB.Line Line2 
+      BorderColor     =   &H80000014&
+      Index           =   0
+      X1              =   225
+      X2              =   10950
+      Y1              =   900
+      Y2              =   900
+   End
+   Begin VB.Line Line1 
+      BorderColor     =   &H80000010&
+      BorderWidth     =   2
+      Index           =   0
+      X1              =   225
+      X2              =   10950
+      Y1              =   900
+      Y2              =   900
+   End
+   Begin VB.Label Labels 
+      Alignment       =   1  'Right Justify
+      Caption         =   " Date"
+      Height          =   240
+      Index           =   1
+      Left            =   150
+      TabIndex        =   36
+      Top             =   525
+      Width           =   1215
+   End
+   Begin VB.Label Labels 
+      Alignment       =   1  'Right Justify
+      Caption         =   "Invoice No"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   240
+      Index           =   0
+      Left            =   450
+      TabIndex        =   35
+      Top             =   150
+      Width           =   915
+   End
+   Begin VB.Shape Shape3 
+      BackColor       =   &H80000010&
+      BackStyle       =   1  'Opaque
+      BorderColor     =   &H80000010&
+      Height          =   240
+      Left            =   225
+      Top             =   3525
+      Width           =   10740
+   End
+End

@@ -1,0 +1,2 @@
+[Inventory Settings]
+Path=C:\Users\Ifasimam\Desktop\kacau\Source Code\Data\Db.mdb
