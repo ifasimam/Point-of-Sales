@@ -541,13 +541,13 @@ Begin VB.MDIForm MAIN
             Style           =   6
             Object.Width           =   1764
             MinWidth        =   1764
-            TextSave        =   "22/02/2016"
+            TextSave        =   "01/03/2016"
          EndProperty
          BeginProperty Panel8 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   5
             Object.Width           =   1764
             MinWidth        =   1764
-            TextSave        =   "23:29"
+            TextSave        =   "16:17"
          EndProperty
          BeginProperty Panel9 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Style           =   3
