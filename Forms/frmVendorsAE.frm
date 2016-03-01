@@ -79,6 +79,7 @@ Begin VB.Form frmVendorsAE
       Width           =   2415
    End
    Begin VB.TextBox txtEntry 
+      BackColor       =   &H80000000&
       Enabled         =   0   'False
       Height          =   285
       Index           =   2
