@@ -1,7 +1,7 @@
 VERSION 5.00
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form frmPurchaseOrder 
-   Caption         =   "Purchase Order"
+   Caption         =   "Pengadaan Barang"
    ClientHeight    =   7650
    ClientLeft      =   60
    ClientTop       =   450
@@ -182,7 +182,7 @@ Begin VB.Form frmPurchaseOrder
    End
    Begin VB.Label lblTitle 
       BackStyle       =   0  'Transparent
-      Caption         =   "Purchase Order"
+      Caption         =   "Pengadaan Barang"
       BeginProperty Font 
          Name            =   "Tahoma"
          Size            =   8.25

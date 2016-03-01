@@ -218,7 +218,7 @@ Private Sub Form_Load()
         'For Stocks
         .ListItems.Add , "frmStocks", "Stok Produk", 6, 6
         '.ListItems.Add , "frmLocalPurchase", "Local Purchase", 6, 6
-        .ListItems.Add , "frmPurchaseOrder", "Purchase Order", 6, 6
+        .ListItems.Add , "frmPurchaseOrder", "Pengadaan Barang", 6, 6
         
         'For Sales
         .ListItems.Add , "frmCashSales", "Kasir Penjualan", 14, 14
